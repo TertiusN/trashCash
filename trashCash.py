@@ -33,10 +33,8 @@ from iota import (
 import random, os, time, sys
 import binascii
 from configparser import SafeConfigParser
-#from modules import nano
 
-node = 'https://tuna.iotasalad.org:14265'
-RAW_AMOUNT = 1000000000000000000000000 # 1e24
+node = 'https://tuna.iotasalad.org:14265' #Select your preferred node
 
 parser = SafeConfigParser()
 config_files = parser.read('config.ini')
@@ -55,7 +53,6 @@ if len(config_files) == 0:
 
     cfgfile = open("config.ini",'w')
     parser.add_section('wallet')
-    parser.set('wallet', 'nanoSeed', nano_seed)
     parser.set('wallet', 'iotaSeed', iota_seed)
     parser.set('wallet', 'index', '0')
 
@@ -65,7 +62,6 @@ if len(config_files) == 0:
 else:
     print("Config file successfully loaded")
     index = int(parser.get('wallet', 'index'))
-    nano_seed = parser.get('wallet', 'nanoSeed')
     iota_seed = parser.get('wallet', 'iotaSeed')
 
 #Check Balance
@@ -184,7 +180,3 @@ while True:
         else:
             print("Listening for iota address...")
             lastScan = datetime.now()
-
-
-#target_account = 'xrb_34prihdxwz3u4ps8qjnn14p7ujyewkoxkwyxm3u665it8rg5rdqw84qrypzk'
-#nano.send_xrb(target_account, 1, account, 0, nano_seed)
