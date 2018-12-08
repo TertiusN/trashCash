@@ -67,10 +67,9 @@ else:
 #Check Balance
 
 def get_balances():
-    nanoBalance = int(nano.get_balance(nano.get_previous(account)))
     api = Iota(node, iota_seed)
     iotaBalance = api.get_account_data()['balance']
-    return iotaBalance, nanoBalance
+    return iotaBalance
     
 
 def send_message(address, depth, message, tag, uri, value):
@@ -109,7 +108,7 @@ def send_message(address, depth, message, tag, uri, value):
 # initialize the video stream and allow the camera sensor to warm up
 print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
-#vs = VideoStream(usePiCamera=True).start()
+#vs = VideoStream(usePiCamera=True).start() - swap to picam for raspberries
 time.sleep(2)
 
 scans=[]
@@ -126,7 +125,7 @@ while True:
     cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
 
     # initialize the frame for viewing
-    #cv2.imshow('frame',frame)
+    #cv2.imshow('frame',frame) - for debugging remove comment
     #key = cv2.waitKey(1)
 
     # find the barcodes in the frame and decode each of the barcodes
